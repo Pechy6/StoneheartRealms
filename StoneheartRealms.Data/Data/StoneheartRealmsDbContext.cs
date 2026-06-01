@@ -13,6 +13,8 @@ public class StoneheartRealmsDbContext(DbContextOptions<StoneheartRealmsDbContex
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(StoneheartRealmsDbContext).Assembly);
         
         SeedDwarfTestingData.SeedDwarf(modelBuilder);
         SeedJobTestingData.SeedJob(modelBuilder);
