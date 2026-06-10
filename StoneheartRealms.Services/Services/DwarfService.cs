@@ -93,16 +93,17 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
         };
     }
 
-    public async Task DeleteDwarf(int id)
+    public async Task<bool> DeleteDwarf(int id)
     {
         var dwarfToDelete = await _context.Dwarves.FindAsync(id);
 
         if (dwarfToDelete == null)
         {
-            return;
+            return false;
         }
         
         _context.Dwarves.Remove(dwarfToDelete);
         await _context.SaveChangesAsync();
+        return true;
     }
 }
