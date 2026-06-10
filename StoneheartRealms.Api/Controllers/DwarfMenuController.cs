@@ -5,7 +5,7 @@ using StoneheartRealms.Services.Interfaces;
 namespace StoneheartRealms.Api.Controllers;
 
 [ApiController]
-[Route("/")]
+[Route("api/dwarves")]
 public class DwarfMenuController(IDwarfService dwarfService) : ControllerBase
 {
     private readonly IDwarfService _dwarfService = dwarfService;
