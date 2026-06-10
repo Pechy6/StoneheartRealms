@@ -7,7 +7,7 @@
 namespace StoneheartRealms.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCore : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,7 +30,7 @@ namespace StoneheartRealms.Data.Migrations
                 name: "Dwarves",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
@@ -56,11 +56,11 @@ namespace StoneheartRealms.Data.Migrations
                 columns: new[] { "Id", "Age", "Description", "Energy", "Gender", "Hunger", "JobId", "Name", "Thirst" },
                 values: new object[,]
                 {
-                    { 1L, 186, "This is the first dwarf", (byte)100, 0, (byte)100, null, "First Dwarf", (byte)100 },
-                    { 2L, 186, "This is the second dwarf", (byte)100, 1, (byte)100, null, "Second Dwarf", (byte)100 },
-                    { 3L, 186, "This is the third dwarf", (byte)100, 0, (byte)100, null, "Third Dwarf", (byte)100 },
-                    { 4L, 186, "This is the fourth dwarf", (byte)100, 0, (byte)100, null, "Fourth Dwarf", (byte)100 },
-                    { 5L, 186, "This is the fifth dwarf", (byte)100, 1, (byte)100, null, "Fifth Dwarf", (byte)100 }
+                    { 1, 186, "This is the first dwarf", (byte)100, 0, (byte)100, null, "First Dwarf", (byte)100 },
+                    { 2, 186, "This is the second dwarf", (byte)100, 1, (byte)100, null, "Second Dwarf", (byte)100 },
+                    { 3, 186, "This is the third dwarf", (byte)100, 0, (byte)100, null, "Third Dwarf", (byte)100 },
+                    { 4, 186, "This is the fourth dwarf", (byte)100, 0, (byte)100, null, "Fourth Dwarf", (byte)100 },
+                    { 5, 186, "This is the fifth dwarf", (byte)100, 1, (byte)100, null, "Fifth Dwarf", (byte)100 }
                 });
 
             migrationBuilder.InsertData(

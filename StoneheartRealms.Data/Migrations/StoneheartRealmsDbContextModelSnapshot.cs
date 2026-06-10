@@ -23,11 +23,11 @@ namespace StoneheartRealms.Data.Migrations
 
             modelBuilder.Entity("StoneheartRealms.Data.Entities.Creatures.Dwarf", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -72,7 +72,7 @@ namespace StoneheartRealms.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Age = 186,
                             Description = "This is the first dwarf",
                             Energy = (byte)100,
@@ -83,7 +83,7 @@ namespace StoneheartRealms.Data.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Age = 186,
                             Description = "This is the second dwarf",
                             Energy = (byte)100,
@@ -94,7 +94,7 @@ namespace StoneheartRealms.Data.Migrations
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Age = 186,
                             Description = "This is the third dwarf",
                             Energy = (byte)100,
@@ -105,7 +105,7 @@ namespace StoneheartRealms.Data.Migrations
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             Age = 186,
                             Description = "This is the fourth dwarf",
                             Energy = (byte)100,
@@ -116,7 +116,7 @@ namespace StoneheartRealms.Data.Migrations
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             Age = 186,
                             Description = "This is the fifth dwarf",
                             Energy = (byte)100,
