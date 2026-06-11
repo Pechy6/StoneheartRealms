@@ -3,14 +3,14 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import { DwarfTable } from './DwarfMenu/DwarfTable'
+import {DwarfTable} from './DwarfMenu/DwarfTable'
+import {DwarfDetail} from './DwarfMenu/DwarfDetail'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <DwarfTable />
+        <DwarfTable/>
+        <DwarfDetail />
     </>
   )
 }
