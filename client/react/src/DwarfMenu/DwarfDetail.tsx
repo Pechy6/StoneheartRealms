@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 
 type Dwarf = {
-    id: number,
     name: string,
     age: number,
     description: string,
@@ -10,8 +9,11 @@ type Dwarf = {
     hunger: number,
     thirst: number
 }
+type DwarfDetailProps = {
+    id: number
+}
 
-export const DwarfDetail = () => {
+export const DwarfDetail = ({id}: DwarfDetailProps) => {
     const [dwarf, setDwarf] = useState<Dwarf | null>(null);
 
     const fetchDwarf = async (id: number) => {
@@ -21,8 +23,8 @@ export const DwarfDetail = () => {
     }
 
     useEffect(() => {
-        fetchDwarf(1);
-    }, []);
+        fetchDwarf(id);
+    }, [id]);
 
     if (!dwarf) {
         return <div>Loading...</div>;

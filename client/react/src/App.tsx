@@ -4,13 +4,11 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import {DwarfTable} from './DwarfMenu/DwarfTable'
-import {DwarfDetail} from './DwarfMenu/DwarfDetail'
 
 function App() {
   return (
     <>
         <DwarfTable/>
-        <DwarfDetail />
     </>
   )
 }
