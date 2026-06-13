@@ -13,8 +13,8 @@ type Dwarf = {
 
 export const DwarfTable = () => {
     const [dwarves, setDwarves] = useState<Dwarf[]>([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedDwarfId, setSelectedDwarfId] = useState<number | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const fetchDwarves = async () => {
         const response = await fetch('/api/dwarves');
@@ -28,7 +28,13 @@ export const DwarfTable = () => {
 
     return (
         <div>
-            {isModalOpen && selectedDwarfId && (<DwarfDetail id={selectedDwarfId}/>)}
+            {isModalOpen && selectedDwarfId !== null &&
+                (<DwarfDetail 
+                        id={selectedDwarfId}
+                        isModalOpen={true}
+                        setIsModalOpen={setIsModalOpen}/>
+                )}
+            
             <h1>Dwarves</h1>
             <table>
                 <thead>

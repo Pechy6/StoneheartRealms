@@ -11,9 +11,11 @@ type Dwarf = {
 }
 type DwarfDetailProps = {
     id: number
+    isModalOpen: boolean
+    setIsModalOpen: (isModalOpen: boolean) => void
 }
 
-export const DwarfDetail = ({id}: DwarfDetailProps) => {
+export const DwarfDetail = ({id, isModalOpen, setIsModalOpen}: DwarfDetailProps) => {
     const [dwarf, setDwarf] = useState<Dwarf | null>(null);
 
     const fetchDwarf = async (id: number) => {
@@ -21,14 +23,22 @@ export const DwarfDetail = ({id}: DwarfDetailProps) => {
         const data = await response.json();
         setDwarf(data);
     }
+    
+    const ender = () => {
+        console.log("ender")
+    }
 
     useEffect(() => {
         fetchDwarf(id);
     }, [id]);
 
+    if (!isModalOpen)
+        return null;
+    
     if (!dwarf) {
         return <div>Loading...</div>;
     }
+    
     return (
     <div>
         <h1>Detail</h1>
@@ -41,6 +51,7 @@ export const DwarfDetail = ({id}: DwarfDetailProps) => {
             <li>Hunger: {dwarf.hunger}</li>
             <li>Thirst: {dwarf.thirst}</li>
         </ul>
+        <button onClick={() => setIsModalOpen(false)}>X</button>
     </div>
 )
 }
