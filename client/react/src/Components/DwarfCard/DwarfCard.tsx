@@ -15,7 +15,7 @@ type DwarfDetailProps = {
     setIsModalOpen: (isModalOpen: boolean) => void
 }
 
-export const DwarfDetail = ({id, isModalOpen, setIsModalOpen}: DwarfDetailProps) => {
+export const DwarfCard = ({id, isModalOpen, setIsModalOpen}: DwarfDetailProps) => {
     const [dwarf, setDwarf] = useState<Dwarf | null>(null);
 
     const fetchDwarf = async (id: number) => {

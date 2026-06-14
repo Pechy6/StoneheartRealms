@@ -12,6 +12,8 @@ builder.Services.AddOpenApi();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddScoped<IDwarfService, DwarfService>();
+builder.Services.AddOpenApi();
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<StoneheartRealmsDbContext>(options =>
     options.UseSqlServer(connectionString));

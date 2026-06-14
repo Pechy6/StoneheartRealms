@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {DwarfDetail} from './DwarfDetail';
+import {DwarfCard} from '../DwarfCard/DwarfCard.tsx'
 
 type Dwarf = {
     id: number,
@@ -29,7 +29,7 @@ export const DwarfTable = () => {
     return (
         <div>
             {isModalOpen && selectedDwarfId !== null &&
-                (<DwarfDetail 
+                (<DwarfCard 
                         id={selectedDwarfId}
                         isModalOpen={true}
                         setIsModalOpen={setIsModalOpen}/>

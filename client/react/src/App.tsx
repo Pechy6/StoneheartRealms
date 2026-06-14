@@ -1,5 +1,5 @@
 import './App.css'
-import {DwarfTable} from './DwarfMenu/DwarfTable'
+import {DwarfTable} from './Components/Menu/DwarfTable'
 
 function App() {
     return (
