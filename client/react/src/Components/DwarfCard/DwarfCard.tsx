@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import './DwarfCard.css'
 
 type Dwarf = {
     name: string,
@@ -40,18 +41,19 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen}: DwarfDetailProps) =
     }
     
     return (
-    <div>
+    <div className="DwarfCard">
+        <button onClick={() => setIsModalOpen(false)}>X</button>
         <h1>Detail</h1>
         <ul>
-            <li>Name: {dwarf.name}</li>
-            <li>Age: {dwarf.age}</li>
-            <li>Gender: {dwarf.gender}</li>
-            <li>Description: {dwarf.description}</li>
-            <li>Energy: {dwarf.energy}</li>
-            <li>Hunger: {dwarf.hunger}</li>
-            <li>Thirst: {dwarf.thirst}</li>
+            <li><span>Name:</span> {dwarf.name}</li>
+            <li><span>Age:</span> {dwarf.age}</li>
+            <li><span>Gender:</span> {dwarf.gender}</li>
+            <li><span>Description:</span> {dwarf.description}</li>
+            <li><span>Energy:</span> {dwarf.energy}</li>
+            <li><span>Hunger:</span> {dwarf.hunger}</li>
+            <li><span>Thirst:</span> {dwarf.thirst}</li>
         </ul>
-        <button onClick={() => setIsModalOpen(false)}>X</button>
+        
     </div>
 )
 }

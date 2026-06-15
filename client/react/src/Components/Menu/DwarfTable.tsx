@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
 import {DwarfCard} from '../DwarfCard/DwarfCard.tsx'
+import './DwarfTable.css'
+import '../../styles/globals.css'
 
 type Dwarf = {
     id: number,
@@ -29,16 +31,20 @@ export const DwarfTable = () => {
     return (
         <div>
             {isModalOpen && selectedDwarfId !== null &&
-                (<DwarfCard 
-                        id={selectedDwarfId}
-                        isModalOpen={true}
-                        setIsModalOpen={setIsModalOpen}/>
-                )}
-            
+                <div className="modal-overlay"
+                     onClick={() => setIsModalOpen(false)}>
+                    <div onClick={(e) => e.stopPropagation()}>
+                        <DwarfCard
+                            id={selectedDwarfId}
+                            isModalOpen={true}
+                            setIsModalOpen={setIsModalOpen}/>
+                    </div>
+                </div>}
+
             <h1>Dwarves</h1>
             <table>
                 <thead>
-                <tr>
+                <tr className={'head-row'}>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Gender</th>
@@ -54,7 +60,7 @@ export const DwarfTable = () => {
                             setSelectedDwarfId(dwarf.id);
                             setIsModalOpen(true);
                         }}>
-                        <td>{dwarf.name}</td>
+                        <td className="name">{dwarf.name}</td>
                         <td>{dwarf.age}</td>
                         <td>{dwarf.gender}</td>
                         <td>{dwarf.energy}</td>
