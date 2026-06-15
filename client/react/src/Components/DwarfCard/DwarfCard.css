@@ -32,8 +32,6 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 50px;
-    height: auto;
 
     background-color: red;
     color: white;
@@ -42,6 +40,22 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.delete-name {
+    font-weight: bold;
+    color: orangered;
+    margin-left: 5px;
+}
+
+.DwarfCard button {
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: auto;
+    margin-left: 10px;
 }
 
 .DwarfCard button:hover {

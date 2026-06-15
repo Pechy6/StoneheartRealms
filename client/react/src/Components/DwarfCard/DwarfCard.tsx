@@ -14,9 +14,10 @@ type DwarfDetailProps = {
     id: number
     isModalOpen: boolean
     setIsModalOpen: (isModalOpen: boolean) => void
+    onDelete: () => void
 }
 
-export const DwarfCard = ({id, isModalOpen, setIsModalOpen}: DwarfDetailProps) => {
+export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onDelete}: DwarfDetailProps) => {
     const [dwarf, setDwarf] = useState<Dwarf | null>(null);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
@@ -31,6 +32,7 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen}: DwarfDetailProps) =
             method: 'DELETE'
         });
         if (response.ok) {
+            onDelete();
             setIsModalOpen(false);
         }
     }
@@ -67,13 +69,11 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen}: DwarfDetailProps) =
             
             {showDeleteConfirmation && (
                 <div className="delete-confirmation">
-                    <p>Are you sure you want to delete this dwarf {dwarf.name}?</p>
+                    <p>Are you sure you want to delete:<span className="delete-name">{dwarf.name}?</span></p>
                     <button onClick={() => fetchDelete(id)}>Yes</button>
                     
                     <button onClick={() => setShowDeleteConfirmation(false)}>No</button>
                 </div>
-
-
             )}
         </div>
     )

@@ -24,6 +24,10 @@ export const DwarfTable = () => {
         setDwarves(data);
     }
 
+    const handleDelete = () => {
+        fetchDwarves();
+    }
+
     useEffect(() => {
         fetchDwarves();
     }, []);
@@ -37,7 +41,8 @@ export const DwarfTable = () => {
                         <DwarfCard
                             id={selectedDwarfId}
                             isModalOpen={true}
-                            setIsModalOpen={setIsModalOpen}/>
+                            setIsModalOpen={setIsModalOpen}
+                            onDelete={handleDelete}/>
                     </div>
                 </div>}
 
