@@ -3,6 +3,11 @@ import {DwarfCard} from '../DwarfCard/DwarfCard.tsx'
 import './DwarfTable.css'
 import '../../styles/globals.css'
 
+enum Gender {
+    Male = 0,
+    Female = 1,
+}
+
 type Dwarf = {
     id: number,
     name: string,
@@ -67,7 +72,7 @@ export const DwarfTable = () => {
                         }}>
                         <td className="name">{dwarf.name}</td>
                         <td>{dwarf.age}</td>
-                        <td>{dwarf.gender}</td>
+                        <td>{Gender[dwarf.gender]}</td>
                         <td>{dwarf.energy}</td>
                         <td>{dwarf.hunger}</td>
                         <td>{dwarf.thirst}</td>
