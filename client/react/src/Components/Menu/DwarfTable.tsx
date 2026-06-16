@@ -23,6 +23,9 @@ export const DwarfTable = () => {
     const [selectedDwarfId, setSelectedDwarfId] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    //Mouse 
+    const [canClose, setCanClose] = useState(false);
+
     const fetchDwarves = async () => {
         const response = await fetch('/api/dwarves');
         const data = await response.json();
@@ -41,12 +44,15 @@ export const DwarfTable = () => {
         <div>
             {isModalOpen && selectedDwarfId !== null &&
                 <div className="modal-overlay"
-                     onClick={(e) => {
-                         if (e.target === e.currentTarget) {
-                             console.log('modal overlay clicked');
+                     onMouseDown={(e) => {
+                         setCanClose(e.target === e.currentTarget);
+                     }}
+                     onMouseUp={() => {
+                         if (canClose) {
                              setIsModalOpen(false);
                          }
-                     }}>
+                     }
+                     }>
                     <div onClick={(e) =>
                         e.stopPropagation()
                     }>
