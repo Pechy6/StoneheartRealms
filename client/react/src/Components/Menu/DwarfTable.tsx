@@ -41,13 +41,20 @@ export const DwarfTable = () => {
         <div>
             {isModalOpen && selectedDwarfId !== null &&
                 <div className="modal-overlay"
-                     onClick={() => setIsModalOpen(false)}>
-                    <div onClick={(e) => e.stopPropagation()}>
+                     onClick={(e) => {
+                         if (e.target === e.currentTarget) {
+                             console.log('modal overlay clicked');
+                             setIsModalOpen(false);
+                         }
+                     }}>
+                    <div onClick={(e) =>
+                        e.stopPropagation()
+                    }>
                         <DwarfCard
                             id={selectedDwarfId}
                             isModalOpen={true}
                             setIsModalOpen={setIsModalOpen}
-                            onDelete={handleDelete}/>
+                            onAction={handleDelete}/>
                     </div>
                 </div>}
 

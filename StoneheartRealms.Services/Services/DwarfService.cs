@@ -82,7 +82,6 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
 
         updateDwarf.Name = dwarf.Name;
         updateDwarf.Description = dwarf.Description;
-        updateDwarf.Gender = dwarf.Gender;
 
         await _context.SaveChangesAsync();
         return new DwarfDto

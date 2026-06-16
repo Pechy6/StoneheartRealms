@@ -19,13 +19,22 @@ type DwarfDetailProps = {
     id: number
     isModalOpen: boolean
     setIsModalOpen: (isModalOpen: boolean) => void
-    onDelete: () => void
+    onAction: () => void
 }
 
-export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onDelete}: DwarfDetailProps) => {
+export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDetailProps) => {
+    // Dwarf 
     const [dwarf, setDwarf] = useState<Dwarf | null>(null);
+
+    // Delete
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
+    // Update
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [editName, setEditName] = useState('');
+    const [editDescription, setEditDescription] = useState('');
+
+    // Fetch data
     const fetchDwarf = async (id: number) => {
         const response = await fetch(`/api/dwarves/${id}`);
         const data = await response.json();
@@ -37,18 +46,47 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onDelete}: DwarfDeta
             method: 'DELETE'
         });
         if (response.ok) {
-            onDelete();
+            onAction();
             setIsModalOpen(false);
         }
     }
 
-    const handleDelete = () => {
-        setShowDeleteConfirmation(true);
+    const handleSaveUpdate = async (e: React.FromEvent) => {
+        e.preventDefault();
+        
+        const response = await fetch(`/api/dwarves/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: editName,
+                description: editDescription
+            })
+        });
+        
+        if (response.ok){
+            await fetchDwarf(id);
+            onAction();
+            setIsUpdating(false);
+        }
     }
 
     useEffect(() => {
         fetchDwarf(id);
     }, [id]);
+
+    // delete
+    const handleDelete = () => {
+        setShowDeleteConfirmation(true);
+    }
+    
+    const handleUpdate = () => {
+        setIsUpdating(true);
+        setEditName(dwarf?.name || '');
+        setEditDescription(dwarf?.description || '');
+    }
+    
 
     if (!isModalOpen)
         return null;
@@ -59,7 +97,9 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onDelete}: DwarfDeta
 
     return (
         <div className="DwarfCard">
-            <button className="close-button" onClick={() => setIsModalOpen(false)}>X</button>
+            <button className="close-button"
+                    onClick={() => setIsModalOpen(false)}>X
+            </button>
             <h1>Detail</h1>
             <ul>
                 <li><span>Name:</span> {dwarf.name}</li>
@@ -70,14 +110,32 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onDelete}: DwarfDeta
                 <li><span>Hunger:</span> {dwarf.hunger}</li>
                 <li><span>Thirst:</span> {dwarf.thirst}</li>
                 <button onClick={handleDelete}>Delete</button>
+                <button onClick={handleUpdate}>Update</button>
             </ul>
-            
+
             {showDeleteConfirmation && (
                 <div className="delete-confirmation">
-                    <p>Are you sure you want to delete:<span className="delete-name">{dwarf.name}?</span></p>
+                    <p>Are you sure you want to delete:<span className="delete-name">{dwarf.name}</span></p>
                     <button onClick={() => fetchDelete(id)}>Yes</button>
-                    
+
                     <button onClick={() => setShowDeleteConfirmation(false)}>No</button>
+                </div>
+            )}
+
+            {isUpdating && (
+                <div className="update-confirmation">
+                    <form onSubmit={handleSaveUpdate}>
+                        <p>Name:</p>
+                        <input type="text"
+                               value={editName}
+                               onChange={(e) => setEditName(e.target.value)}/>
+                        <p>Description</p>
+                        <textarea className="description" type="text"
+                               value={editDescription}
+                               onChange={(e) => setEditDescription(e.target.value)}/>
+                        <br/>
+                        <button type="submit" className="submit-btn">Save</button>
+                    </form>
                 </div>
             )}
         </div>
