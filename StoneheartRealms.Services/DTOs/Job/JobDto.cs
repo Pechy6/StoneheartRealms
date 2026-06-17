@@ -1,0 +1,8 @@
+namespace StoneheartRealms.Services.DTOs.Job;
+
+public class JobDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public string Description { get; set; } = "";
+}

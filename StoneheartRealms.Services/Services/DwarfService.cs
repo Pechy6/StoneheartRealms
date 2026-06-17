@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using StoneheartRealms.Data.Data;
 using StoneheartRealms.Data.Entities.Creatures;
 using StoneheartRealms.Services.DTOs;
+using StoneheartRealms.Services.DTOs.Job;
 using StoneheartRealms.Services.Interfaces;
 
 namespace StoneheartRealms.Services.Services;
@@ -104,5 +105,19 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
         _context.Dwarves.Remove(dwarfToDelete);
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task AssignJob(int dwarfId, int jobId)
+    {
+        var dwarf = await _context.Dwarves.FindAsync(dwarfId);
+        if (dwarf == null)
+            return;
+        
+        var job = await _context.Jobs.FindAsync(jobId);
+        if (job == null)
+            return;
+        
+        dwarf.JobId = job.Id;
+        await _context.SaveChangesAsync();
     }
 }
