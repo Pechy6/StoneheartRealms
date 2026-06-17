@@ -5,5 +5,5 @@ namespace StoneheartRealms.Services.Interfaces.Job;
 public interface IJobService
 {
     public Task<IEnumerable<JobDto>> GetJobs();
-    public Task<JobDto?> GetJobById(int id);
+    public Task<JobDto?> GetAllJobs(int id);
 }

@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using StoneheartRealms.Data.Data;
 using StoneheartRealms.Data.Entities.Creatures;
 using StoneheartRealms.Services.DTOs;
-using StoneheartRealms.Services.DTOs.Job;
 using StoneheartRealms.Services.Interfaces.Dwarf;
 
 namespace StoneheartRealms.Services.Services;
