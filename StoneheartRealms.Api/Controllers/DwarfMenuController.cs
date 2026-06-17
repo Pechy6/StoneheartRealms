@@ -64,7 +64,6 @@ public class DwarfMenuController(IDwarfService dwarfService) : ControllerBase
         return NoContent();
     }
     
-    
 
     [HttpPut("{dwarfId:int}/job/{jobId:int}")]
     public async Task<IActionResult> AssignJob(int dwarfId, int jobId)

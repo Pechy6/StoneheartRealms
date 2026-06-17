@@ -15,7 +15,8 @@ type Dwarf = {
     gender: string,
     energy: number,
     hunger: number,
-    thirst: number
+    thirst: number,
+    job: string
 }
 
 export const DwarfTable = () => {
@@ -29,6 +30,7 @@ export const DwarfTable = () => {
     const fetchDwarves = async () => {
         const response = await fetch('/api/dwarves');
         const data = await response.json();
+        console.log(data);
         setDwarves(data);
     }
 
@@ -74,6 +76,7 @@ export const DwarfTable = () => {
                     <th>Energy</th>
                     <th>Hunger</th>
                     <th>Thirst</th>
+                    <th>Job</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -89,6 +92,7 @@ export const DwarfTable = () => {
                         <td>{dwarf.energy}</td>
                         <td>{dwarf.hunger}</td>
                         <td>{dwarf.thirst}</td>
+                        <td>{dwarf.job}</td>
                     </tr>
                 ))}
                 </tbody>

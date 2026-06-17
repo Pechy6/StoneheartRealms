@@ -14,7 +14,7 @@ public static class SeedJobTestingData
                 {
                     Id = 1,
                     Name = "Farmer",
-                    Description = "This is a farmer"
+                    Description = "This is a farmer",
                 },
                 new Job
                 {

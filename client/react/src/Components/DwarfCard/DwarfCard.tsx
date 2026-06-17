@@ -13,7 +13,8 @@ type Dwarf = {
     gender: string,
     energy: number,
     hunger: number,
-    thirst: number
+    thirst: number,
+    job: string
 }
 type DwarfDetailProps = {
     id: number

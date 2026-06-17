@@ -16,5 +16,5 @@ public class DwarfDto
     public int Thirst { get; set; }
     
     public int? JobId { get; set; }
-    public string? JobName { get; set; }
+    public string? Job { get; set; }
 }

@@ -16,7 +16,8 @@ public static class SeedDwarfTestingData
                     Name = "First Dwarf",
                     Description = "This is the first dwarf",
                     Age = 186,
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    JobId = 1
                 },
                 new Dwarf
                 {
@@ -24,7 +25,8 @@ public static class SeedDwarfTestingData
                     Name = "Second Dwarf",
                     Description = "This is the second dwarf",
                     Age = 186,
-                    Gender = Gender.Female
+                    Gender = Gender.Female,
+                    JobId = 2
                 },
                 new Dwarf
                 {
@@ -32,7 +34,8 @@ public static class SeedDwarfTestingData
                     Name = "Third Dwarf",
                     Description = "This is the third dwarf",
                     Age = 186,
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    JobId = 3
                 },
                 new Dwarf
                 {
@@ -40,7 +43,8 @@ public static class SeedDwarfTestingData
                     Name = "Fourth Dwarf",
                     Description = "This is the fourth dwarf",
                     Age = 186,
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    JobId = 4
                 },
                 new Dwarf
                 {
@@ -48,7 +52,35 @@ public static class SeedDwarfTestingData
                     Name = "Fifth Dwarf",
                     Description = "This is the fifth dwarf",
                     Age = 186,
-                    Gender = Gender.Female
+                    Gender = Gender.Female,
+                    JobId = 5
+                },
+                new Dwarf
+                    {
+                        Id = 6,
+                        Name = "Sixth Dwarf",
+                        Description = "This is the sixth dwarf",
+                        Age = 186,
+                        Gender = Gender.Male,
+                        JobId = 6
+                    },
+                new Dwarf
+                {
+                    Id = 7,
+                    Name = "Seventh Dwarf",
+                    Description = "This is the seventh dwarf",
+                    Age = 186,
+                    Gender = Gender.Female,
+                    JobId = 7
+                },
+                new Dwarf
+                {
+                    Id = 8,
+                    Name = "Eighth Dwarf",
+                    Description = "This is the eighth dwarf",
+                    Age = 186,
+                    Gender = Gender.Male,
+                    JobId = 8
                 }
             );
     }

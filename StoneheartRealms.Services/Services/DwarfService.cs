@@ -32,7 +32,10 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
 
     public async Task<IEnumerable<DwarfDto>> GetDwarves()
     {
-        var dwarves = await _context.Dwarves.ToListAsync();
+        var dwarves = await _context.
+            Dwarves.
+            Include(d => d.Job).
+            ToListAsync();
 
         return dwarves.Select(dwarf => new DwarfDto
         {
@@ -43,7 +46,9 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
             Gender = dwarf.Gender,
             Energy = dwarf.Energy,
             Hunger = dwarf.Hunger,
-            Thirst = dwarf.Thirst
+            Thirst = dwarf.Thirst,
+            JobId = dwarf.JobId,
+            Job = dwarf.Job?.Name
         });
     }
 
@@ -100,7 +105,7 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
         {
             return false;
         }
-        
+
         _context.Dwarves.Remove(dwarfToDelete);
         await _context.SaveChangesAsync();
         return true;
@@ -111,11 +116,11 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
         var dwarf = await _context.Dwarves.FindAsync(dwarfId);
         if (dwarf == null)
             return;
-        
+
         var job = await _context.Jobs.FindAsync(jobId);
         if (job == null)
             return;
-        
+
         dwarf.JobId = job.Id;
         await _context.SaveChangesAsync();
     }

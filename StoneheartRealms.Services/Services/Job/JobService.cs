@@ -19,7 +19,7 @@ public class JobService(StoneheartRealmsDbContext context): IJobService
         });
     }
 
-    public async Task<JobDto?> GetAllJobs(int id)
+    public async Task<JobDto?> GetJobById(int id)
     {
         var job = await _context.Jobs.FindAsync(id);
         if (job == null)
