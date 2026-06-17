@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StoneheartRealms.Data.Data;
-using StoneheartRealms.Services.Interfaces;
+using StoneheartRealms.Services.Interfaces.Dwarf;
 using StoneheartRealms.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);

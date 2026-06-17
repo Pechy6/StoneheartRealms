@@ -1,6 +1,6 @@
 using StoneheartRealms.Services.DTOs.Job;
 
-namespace StoneheartRealms.Services.Interfaces;
+namespace StoneheartRealms.Services.Interfaces.Job;
 
 public interface IJobService
 {

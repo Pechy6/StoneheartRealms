@@ -1,7 +1,7 @@
 using StoneheartRealms.Services.DTOs;
 using StoneheartRealms.Services.DTOs.Job;
 
-namespace StoneheartRealms.Services.Interfaces;
+namespace StoneheartRealms.Services.Interfaces.Dwarf;
 
 public interface IDwarfService
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using StoneheartRealms.Services.DTOs;
-using StoneheartRealms.Services.Interfaces;
+using StoneheartRealms.Services.Interfaces.Dwarf;
 
 namespace StoneheartRealms.Api.Controllers;
 
