@@ -7,7 +7,7 @@
 namespace StoneheartRealms.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitalMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -69,8 +69,13 @@ namespace StoneheartRealms.Data.Migrations
                 values: new object[,]
                 {
                     { 1, "This is a farmer", "Farmer" },
-                    { 2, "This is a miner", "Miner" },
-                    { 3, "This is a cook", "Cook" }
+                    { 2, "This is a fisher", "Fisher" },
+                    { 3, "This is a hunter", "Hunter" },
+                    { 4, "This is a cook", "Cook" },
+                    { 5, "This is a miner", "Miner" },
+                    { 6, "This is a blacksmith", "Blacksmith" },
+                    { 7, "This is a woodcutter", "Woodcutter" },
+                    { 8, "This is a administrator of the colony", "Administrator" }
                 });
 
             migrationBuilder.CreateIndex(
