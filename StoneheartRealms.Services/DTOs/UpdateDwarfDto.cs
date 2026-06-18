@@ -6,4 +6,5 @@ public class UpdateDwarfDto
 {
     public string Name { get; set; } = "";
     public string Description { get; set; } = "";
+    public int JobId { get; set; }
 }

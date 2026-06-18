@@ -14,13 +14,19 @@ type Dwarf = {
     energy: number,
     hunger: number,
     thirst: number,
-    job: string
+    job: string,
+    jobId: number
 }
 type DwarfDetailProps = {
     id: number
     isModalOpen: boolean
     setIsModalOpen: (isModalOpen: boolean) => void
     onAction: () => void
+}
+
+type Jobs ={
+    id: number,
+    name: string
 }
 
 export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDetailProps) => {
@@ -34,7 +40,11 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
     const [isUpdating, setIsUpdating] = useState(false);
     const [editName, setEditName] = useState('');
     const [editDescription, setEditDescription] = useState('');
-
+    
+    //Jobs
+    const [jobs, setJobs] = useState<Jobs[]>([]);
+    const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
+    
     // Fetch data
     const fetchDwarf = async (id: number) => {
         const response = await fetch(`/api/dwarves/${id}`);
@@ -51,8 +61,16 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
             setIsModalOpen(false);
         }
     }
-
-    const handleSaveUpdate = async (e: React.FromEvent) => {
+    
+    //Jobs
+    const fetchJobs = async () => {
+        const response = await fetch('/api/jobs');
+        const data = await response.json();
+        setJobs(data);
+    }
+    
+        
+    const handleSaveUpdate = async (e: React.FormEvent) => {
         e.preventDefault();
         
         const response = await fetch(`/api/dwarves/${id}`, {
@@ -62,7 +80,8 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
             },
             body: JSON.stringify({
                 name: editName,
-                description: editDescription
+                description: editDescription,
+                jobId: selectedJobId
             })
         });
         
@@ -77,6 +96,10 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
         fetchDwarf(id);
     }, [id]);
 
+    useEffect(() => {
+        fetchJobs();
+    }, []);
+
     // delete
     const handleDelete = () => {
         setShowDeleteConfirmation(true);
@@ -86,6 +109,7 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
         setIsUpdating(true);
         setEditName(dwarf?.name || '');
         setEditDescription(dwarf?.description || '');
+        setSelectedJobId(dwarf?.jobId ?? null);
     }
     
 
@@ -134,6 +158,13 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
                         <textarea className="description" type="text"
                                value={editDescription}
                                onChange={(e) => setEditDescription(e.target.value)}/>
+                        <select value={selectedJobId ?? ''} onChange={(e) => setSelectedJobId(Number(e.target.value))}>
+                            {jobs.map((job) => (
+                                <option key={job.id} value={job.id}>
+                                    {job.name}
+                                </option>
+                            ))}
+                        </select>
                         <br/>
                         <button type="submit" className="submit-btn">Save</button>
                     </form>
