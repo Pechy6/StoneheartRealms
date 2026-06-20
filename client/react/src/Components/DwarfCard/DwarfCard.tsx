@@ -89,7 +89,6 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
         }
         
         if (selectedJobId !== null) {
-            debugger;
             const jobResponse = await fetch(`/api/dwarves/${id}/job/${selectedJobId}`, {
                 method: 'PUT'
             });
@@ -101,7 +100,6 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
             await fetchDwarf(id);
             onAction();
             setIsUpdating(false);
-            debugger;
         }
     }
 
