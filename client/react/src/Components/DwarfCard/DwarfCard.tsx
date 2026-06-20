@@ -81,14 +81,27 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
             body: JSON.stringify({
                 name: editName,
                 description: editDescription,
-                jobId: selectedJobId
             })
         });
         
-        if (response.ok){
+        if (!response.ok){
+            return;
+        }
+        
+        if (selectedJobId !== null) {
+            debugger;
+            const jobResponse = await fetch(`/api/dwarves/${id}/job/${selectedJobId}`, {
+                method: 'PUT'
+            });
+            
+            if (!jobResponse.ok){
+                return;
+            }
+            
             await fetchDwarf(id);
             onAction();
             setIsUpdating(false);
+            debugger;
         }
     }
 
@@ -131,6 +144,7 @@ export const DwarfCard = ({id, isModalOpen, setIsModalOpen, onAction}: DwarfDeta
                 <li><span>Age:</span> {dwarf.age}</li>
                 <li><span>Gender:</span> {Gender[dwarf.gender]}</li>
                 <li><span>Description:</span> {dwarf.description}</li>
+                <li><span>Job:</span> {dwarf.job}</li>
                 <li><span>Energy:</span> {dwarf.energy}</li>
                 <li><span>Hunger:</span> {dwarf.hunger}</li>
                 <li><span>Thirst:</span> {dwarf.thirst}</li>

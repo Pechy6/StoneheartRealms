@@ -12,7 +12,11 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
 
     public async Task<DwarfDto?> GetDwarf(int id)
     {
-        var dwarf = await _context.Dwarves.FindAsync(id);
+        var dwarf = await _context.
+            Dwarves.
+            Include(d => d.Job).
+            FirstOrDefaultAsync(d => d.Id == id);
+        
         if (dwarf == null)
             return null;
 
@@ -25,8 +29,11 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
             Gender = dwarf.Gender,
             Energy = dwarf.Energy,
             Hunger = dwarf.Hunger,
-            Thirst = dwarf.Thirst
+            Thirst = dwarf.Thirst,
+            JobId = dwarf.JobId,
+            Job = dwarf.Job?.Name
         };
+        
         return dwarfDto;
     }
 
