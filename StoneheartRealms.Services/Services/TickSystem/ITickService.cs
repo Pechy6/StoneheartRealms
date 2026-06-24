@@ -1,6 +1,6 @@
 namespace StoneheartRealms.Services.Services.TickSystem;
 
-public interface ITick
+public interface ITickService
 {
-    
+    public void Tick();
 }
