@@ -1,6 +1,6 @@
 namespace StoneheartRealms.Data.Entities.Storage;
 
-public class Resources
+public class Resource
 {
     public int Id { get; set; }
     public int Amount { get; set; }

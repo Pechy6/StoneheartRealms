@@ -78,6 +78,7 @@ namespace StoneheartRealms.Data.Migrations
                             Energy = (byte)100,
                             Gender = 0,
                             Hunger = (byte)100,
+                            JobId = 1,
                             Name = "First Dwarf",
                             Thirst = (byte)100
                         },
@@ -89,6 +90,7 @@ namespace StoneheartRealms.Data.Migrations
                             Energy = (byte)100,
                             Gender = 1,
                             Hunger = (byte)100,
+                            JobId = 2,
                             Name = "Second Dwarf",
                             Thirst = (byte)100
                         },
@@ -100,6 +102,7 @@ namespace StoneheartRealms.Data.Migrations
                             Energy = (byte)100,
                             Gender = 0,
                             Hunger = (byte)100,
+                            JobId = 3,
                             Name = "Third Dwarf",
                             Thirst = (byte)100
                         },
@@ -111,6 +114,7 @@ namespace StoneheartRealms.Data.Migrations
                             Energy = (byte)100,
                             Gender = 0,
                             Hunger = (byte)100,
+                            JobId = 4,
                             Name = "Fourth Dwarf",
                             Thirst = (byte)100
                         },
@@ -122,7 +126,44 @@ namespace StoneheartRealms.Data.Migrations
                             Energy = (byte)100,
                             Gender = 1,
                             Hunger = (byte)100,
+                            JobId = 5,
                             Name = "Fifth Dwarf",
+                            Thirst = (byte)100
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Age = 186,
+                            Description = "This is the sixth dwarf",
+                            Energy = (byte)100,
+                            Gender = 0,
+                            Hunger = (byte)100,
+                            JobId = 6,
+                            Name = "Sixth Dwarf",
+                            Thirst = (byte)100
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Age = 186,
+                            Description = "This is the seventh dwarf",
+                            Energy = (byte)100,
+                            Gender = 1,
+                            Hunger = (byte)100,
+                            JobId = 7,
+                            Name = "Seventh Dwarf",
+                            Thirst = (byte)100
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Age = 186,
+                            Description = "This is the eighth dwarf",
+                            Energy = (byte)100,
+                            Gender = 0,
+                            Hunger = (byte)100,
+                            JobId = 8,
+                            Name = "Eighth Dwarf",
                             Thirst = (byte)100
                         });
                 });
@@ -200,6 +241,67 @@ namespace StoneheartRealms.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("StoneheartRealms.Data.Entities.Storage.Resource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResourceTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StorageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ResourceTypeId");
+
+                    b.HasIndex("StorageId");
+
+                    b.ToTable("Resources");
+                });
+
+            modelBuilder.Entity("StoneheartRealms.Data.Entities.Storage.ResourceType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ResourceTypes");
+                });
+
+            modelBuilder.Entity("StoneheartRealms.Data.Entities.Storage.Storage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Storages");
+                });
+
             modelBuilder.Entity("StoneheartRealms.Data.Entities.Creatures.Dwarf", b =>
                 {
                     b.HasOne("StoneheartRealms.Data.Entities.Jobs.Job", "Job")
@@ -209,9 +311,33 @@ namespace StoneheartRealms.Data.Migrations
                     b.Navigation("Job");
                 });
 
+            modelBuilder.Entity("StoneheartRealms.Data.Entities.Storage.Resource", b =>
+                {
+                    b.HasOne("StoneheartRealms.Data.Entities.Storage.ResourceType", "ResourceType")
+                        .WithMany()
+                        .HasForeignKey("ResourceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StoneheartRealms.Data.Entities.Storage.Storage", "Storage")
+                        .WithMany("Resources")
+                        .HasForeignKey("StorageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ResourceType");
+
+                    b.Navigation("Storage");
+                });
+
             modelBuilder.Entity("StoneheartRealms.Data.Entities.Jobs.Job", b =>
                 {
                     b.Navigation("Dwarves");
+                });
+
+            modelBuilder.Entity("StoneheartRealms.Data.Entities.Storage.Storage", b =>
+                {
+                    b.Navigation("Resources");
                 });
 #pragma warning restore 612, 618
         }

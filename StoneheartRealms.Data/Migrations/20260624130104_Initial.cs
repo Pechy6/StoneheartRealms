@@ -7,7 +7,7 @@
 namespace StoneheartRealms.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,6 +24,32 @@ namespace StoneheartRealms.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Jobs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ResourceTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ResourceTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Storages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Storages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,6 +75,33 @@ namespace StoneheartRealms.Data.Migrations
                         column: x => x.JobId,
                         principalTable: "Jobs",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Resources",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    StorageId = table.Column<int>(type: "int", nullable: false),
+                    ResourceTypeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Resources", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Resources_ResourceTypes_ResourceTypeId",
+                        column: x => x.ResourceTypeId,
+                        principalTable: "ResourceTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Resources_Storages_StorageId",
+                        column: x => x.StorageId,
+                        principalTable: "Storages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -85,6 +138,16 @@ namespace StoneheartRealms.Data.Migrations
                 name: "IX_Dwarves_JobId",
                 table: "Dwarves",
                 column: "JobId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Resources_ResourceTypeId",
+                table: "Resources",
+                column: "ResourceTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Resources_StorageId",
+                table: "Resources",
+                column: "StorageId");
         }
 
         /// <inheritdoc />
@@ -94,7 +157,16 @@ namespace StoneheartRealms.Data.Migrations
                 name: "Dwarves");
 
             migrationBuilder.DropTable(
+                name: "Resources");
+
+            migrationBuilder.DropTable(
                 name: "Jobs");
+
+            migrationBuilder.DropTable(
+                name: "ResourceTypes");
+
+            migrationBuilder.DropTable(
+                name: "Storages");
         }
     }
 }
