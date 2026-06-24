@@ -265,6 +265,64 @@ namespace StoneheartRealms.Data.Migrations
                     b.HasIndex("StorageId");
 
                     b.ToTable("Resources");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 500,
+                            ResourceTypeId = 1,
+                            StorageId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 150,
+                            ResourceTypeId = 2,
+                            StorageId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 200,
+                            ResourceTypeId = 3,
+                            StorageId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 300,
+                            ResourceTypeId = 4,
+                            StorageId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 50,
+                            ResourceTypeId = 5,
+                            StorageId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 50,
+                            ResourceTypeId = 6,
+                            StorageId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 100,
+                            ResourceTypeId = 7,
+                            StorageId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Amount = 200,
+                            ResourceTypeId = 8,
+                            StorageId = 1
+                        });
                 });
 
             modelBuilder.Entity("StoneheartRealms.Data.Entities.Storage.ResourceType", b =>
@@ -282,6 +340,48 @@ namespace StoneheartRealms.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ResourceTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Gold"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Iron"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Stone"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Wood"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Fish"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Meat"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Wheat"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Food"
+                        });
                 });
 
             modelBuilder.Entity("StoneheartRealms.Data.Entities.Storage.Storage", b =>
@@ -300,6 +400,13 @@ namespace StoneheartRealms.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Storages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Main Storage"
+                        });
                 });
 
             modelBuilder.Entity("StoneheartRealms.Data.Entities.Creatures.Dwarf", b =>

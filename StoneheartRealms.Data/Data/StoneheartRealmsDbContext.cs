@@ -3,6 +3,7 @@ using StoneheartRealms.Data.Entities.Creatures;
 using StoneheartRealms.Data.Entities.Jobs;
 using StoneheartRealms.Data.Entities.Storage;
 using StoneheartRealms.Data.SeedTestingData;
+using StoneheartRealms.Data.SeedTestingData.StorageData;
 
 namespace StoneheartRealms.Data.Data;
 
@@ -22,6 +23,11 @@ public class StoneheartRealmsDbContext(DbContextOptions<StoneheartRealmsDbContex
         
         SeedDwarfTestingData.SeedDwarf(modelBuilder);
         SeedJobTestingData.SeedJob(modelBuilder);
+        
+        //Storage
+        SeedStorageTestingData.SeedStorage(modelBuilder);
+        SeedResourceTestingData.SeedResource(modelBuilder);
+        SeedResourceTypeTestingData.SeedResourceType(modelBuilder);
     }
 }
 

@@ -7,7 +7,7 @@
 namespace StoneheartRealms.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -120,6 +120,26 @@ namespace StoneheartRealms.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ResourceTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Gold" },
+                    { 2, "Iron" },
+                    { 3, "Stone" },
+                    { 4, "Wood" },
+                    { 5, "Fish" },
+                    { 6, "Meat" },
+                    { 7, "Wheat" },
+                    { 8, "Food" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Storages",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Main Storage" });
+
+            migrationBuilder.InsertData(
                 table: "Dwarves",
                 columns: new[] { "Id", "Age", "Description", "Energy", "Gender", "Hunger", "JobId", "Name", "Thirst" },
                 values: new object[,]
@@ -132,6 +152,21 @@ namespace StoneheartRealms.Data.Migrations
                     { 6, 186, "This is the sixth dwarf", (byte)100, 0, (byte)100, 6, "Sixth Dwarf", (byte)100 },
                     { 7, 186, "This is the seventh dwarf", (byte)100, 1, (byte)100, 7, "Seventh Dwarf", (byte)100 },
                     { 8, 186, "This is the eighth dwarf", (byte)100, 0, (byte)100, 8, "Eighth Dwarf", (byte)100 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Resources",
+                columns: new[] { "Id", "Amount", "ResourceTypeId", "StorageId" },
+                values: new object[,]
+                {
+                    { 1, 500, 1, 1 },
+                    { 2, 150, 2, 1 },
+                    { 3, 200, 3, 1 },
+                    { 4, 300, 4, 1 },
+                    { 5, 50, 5, 1 },
+                    { 6, 50, 6, 1 },
+                    { 7, 100, 7, 1 },
+                    { 8, 200, 8, 1 }
                 });
 
             migrationBuilder.CreateIndex(
