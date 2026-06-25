@@ -4,6 +4,8 @@ using StoneheartRealms.Services.Interfaces.Dwarf;
 using StoneheartRealms.Services.Interfaces.Job;
 using StoneheartRealms.Services.Services;
 using StoneheartRealms.Services.Services.Job;
+using StoneheartRealms.Services.Services.Needs;
+using StoneheartRealms.Services.Services.TickSystem;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddOpenApi();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+builder.Services.AddScoped<INeedDecayService, NeedDecayService>();
+builder.Services.AddScoped<ITickService, TickService>();
 builder.Services.AddScoped<IDwarfService, DwarfService>();
 builder.Services.AddScoped<IJobService, JobService>();
 builder.Services.AddOpenApi();

@@ -10,25 +10,16 @@ public class NeedDecayService : INeedDecayService
 
     public void ReduceEnergy(Dwarf dwarf)
     {
-        if (dwarf.Energy <= 0)
-            dwarf.Energy = 0;
-        
-        dwarf.Energy -= _energyDecayRate;
+        dwarf.Energy = (byte)Math.Max(0, dwarf.Energy - _energyDecayRate);
     }
 
     public void ReduceSatiety(Dwarf dwarf)
     {
-        if (dwarf.Hunger <= 0)
-            dwarf.Hunger = 0;
-
-        dwarf.Hunger -= _satietyDecayRate;
+        dwarf.Hunger = (byte)Math.Max(0, dwarf.Hunger - _satietyDecayRate);
     }
 
     public void ReduceHydration(Dwarf dwarf)
     {
-        if (dwarf.Thirst <= 0)
-            dwarf.Thirst = 0;
-        
-        dwarf.Thirst -= _hydrationDecayRate;
+        dwarf.Thirst = (byte)Math.Max(0, dwarf.Thirst - _hydrationDecayRate);
     }
 }

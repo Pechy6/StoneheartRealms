@@ -34,6 +34,15 @@ export const DwarfTable = () => {
         setDwarves(data);
     }
 
+    const fetchTick = async () => {
+        const response = await fetch('/api/tick', {
+            method: 'POST'
+        });
+        
+        await fetchDwarves();
+        console.log(response.status);
+    }
+
     const handleDelete = () => {
         fetchDwarves();
     }
@@ -97,6 +106,7 @@ export const DwarfTable = () => {
                 ))}
                 </tbody>
             </table>
+            <button onClick={fetchTick}>Tick</button>
         </div>
     )
 }

@@ -1,20 +1,25 @@
+using Microsoft.EntityFrameworkCore;
+using StoneheartRealms.Data.Data;
 using StoneheartRealms.Data.Entities.Creatures;
 using StoneheartRealms.Services.Services.Needs;
 
 namespace StoneheartRealms.Services.Services.TickSystem;
 
-public class TickServiceService(INeedDecayService needDecayService, List<Dwarf> dwarves): ITickService
+public class TickService(INeedDecayService needDecayService, StoneheartRealmsDbContext context): ITickService
 {
     private readonly INeedDecayService _needDecayService = needDecayService;
-    private readonly List<Dwarf> _dwarves = dwarves;
+    private readonly StoneheartRealmsDbContext _context = context;
     
-    public void Tick()
+    public async Task Tick()
     {
-        foreach (var dwarf in _dwarves)
+        var dwarves = await _context.Dwarves.ToListAsync();
+        foreach (var dwarf in dwarves)
         {
             _needDecayService.ReduceHydration(dwarf);
             _needDecayService.ReduceEnergy(dwarf);
             _needDecayService.ReduceSatiety(dwarf);
         }
+        
+        await _context.SaveChangesAsync();
     }
 }
