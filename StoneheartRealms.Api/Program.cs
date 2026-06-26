@@ -5,6 +5,7 @@ using StoneheartRealms.Services.Interfaces.Job;
 using StoneheartRealms.Services.Services;
 using StoneheartRealms.Services.Services.Job;
 using StoneheartRealms.Services.Services.Needs;
+using StoneheartRealms.Services.Services.Production;
 using StoneheartRealms.Services.Services.StorageManager;
 using StoneheartRealms.Services.Services.TickSystem;
 
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IStorageService, StorageService>();
 builder.Services.AddScoped<ITickService, TickService>();
 builder.Services.AddScoped<IDwarfService, DwarfService>();
 builder.Services.AddScoped<IJobService, JobService>();
+builder.Services.AddScoped<IJobProduction, JobProduction>();
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();

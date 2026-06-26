@@ -9,16 +9,20 @@ public class JobProduction(IStorageService storageService) : IJobProduction
 {
     private readonly IStorageService _storageService = storageService;
 
-    public Task Produce(Dwarf dwarf)
+    public async Task Produce(Dwarf dwarf)
     {
         ArgumentNullException.ThrowIfNull(dwarf);
 
         if (dwarf.Job == null)
         {
-            return Task.CompletedTask;
+            return;
         }
 
-        return Task.CompletedTask;
+        if (dwarf.JobId == JobTypeIds.Miner)
+        {
+            await Mine(dwarf, 1);
+        }
+        
     }
 
     private async Task Mine(Dwarf dwarf, int storageId)
