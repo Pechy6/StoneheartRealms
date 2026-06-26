@@ -1,10 +1,14 @@
+using StoneheartRealms.Data.Constants;
 using StoneheartRealms.Data.Entities.Creatures;
+using StoneheartRealms.Services.Services.StorageManager;
 using StoneheartRealms.Data.Entities.Storage;
 
 namespace StoneheartRealms.Services.Services.Production;
 
-public class JobProduction: IJobProduction
+public class JobProduction(IStorageService storageService) : IJobProduction
 {
+    private readonly IStorageService _storageService = storageService;
+
     public Task Produce(Dwarf dwarf)
     {
         ArgumentNullException.ThrowIfNull(dwarf);
@@ -14,16 +18,11 @@ public class JobProduction: IJobProduction
             return Task.CompletedTask;
         }
 
-        switch (dwarf.JobId)
-        {
-            
-        }
-        
         return Task.CompletedTask;
     }
-    
-    private void Mine(Dwarf dwarf, Storage storage)
+
+    private async Task Mine(Dwarf dwarf, int storageId)
     {
-        
+        await _storageService.AddResources(storageId, ResourceTypeIds.Iron, 1);
     }
 }

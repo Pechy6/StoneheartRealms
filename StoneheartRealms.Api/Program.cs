@@ -5,20 +5,23 @@ using StoneheartRealms.Services.Interfaces.Job;
 using StoneheartRealms.Services.Services;
 using StoneheartRealms.Services.Services.Job;
 using StoneheartRealms.Services.Services.Needs;
+using StoneheartRealms.Services.Services.StorageManager;
 using StoneheartRealms.Services.Services.TickSystem;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// DI 
 builder.Services.AddScoped<INeedDecayService, NeedDecayService>();
+builder.Services.AddScoped<IStorageService, StorageService>();
 builder.Services.AddScoped<ITickService, TickService>();
 builder.Services.AddScoped<IDwarfService, DwarfService>();
 builder.Services.AddScoped<IJobService, JobService>();
+
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
