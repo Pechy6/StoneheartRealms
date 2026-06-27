@@ -21,7 +21,7 @@ public class StorageService(StoneheartRealmsDbContext context) : IStorageService
 
         resource.Amount += amount;
         await _context.SaveChangesAsync();
-    }
+    } 
 
     public async Task<Storage?> GetStorage(int id)
     {
