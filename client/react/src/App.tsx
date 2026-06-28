@@ -5,12 +5,14 @@ import {HomePage} from './Components/Pages/Home/HomePage'
 import {FortressPage} from './Components/Pages/Fortress/FortressPage'
 import {SurroundingsPage} from './Components/Pages/Surroundings/SurroundingsPage'
 import {StoragePage} from './Components/Pages/Storage/StoragePage'
+import {ResourceBar} from './Components/ResourceBar/ResourceBar'
 
 
 function App() {
     return (
         <>
             <BrowserRouter>
+                <ResourceBar/>
                 <Navigation/>
                 <Routes>
                     <Route path="/"

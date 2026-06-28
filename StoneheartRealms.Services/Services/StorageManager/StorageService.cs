@@ -33,6 +33,7 @@ public class StorageService(StoneheartRealmsDbContext context) : IStorageService
 
         return resources.Select(r => new ResourceDto
         {
+            ResourceId = r.ResourceTypeId,
             ResourceName = r.ResourceType.Name,
             Amount = r.Amount
         });
