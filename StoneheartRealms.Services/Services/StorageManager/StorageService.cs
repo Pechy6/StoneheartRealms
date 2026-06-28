@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using StoneheartRealms.Data.Data;
 using StoneheartRealms.Data.Entities.Storage;
+using StoneheartRealms.Services.DTOs.StorageResources;
 
 namespace StoneheartRealms.Services.Services.StorageManager;
 
@@ -23,12 +24,11 @@ public class StorageService(StoneheartRealmsDbContext context) : IStorageService
         await _context.SaveChangesAsync();
     } 
 
-    public async Task<Storage?> GetStorage(int id)
+    public async Task<IEnumerable<ResourceDto?>> GetResource(int storageId)
     {
-        return await _context.
-            Storages.
-            Include(s => s.Resources).
-            ThenInclude(r => r.ResourceType).
-            FirstOrDefaultAsync(s => s.Id == id);
+        var resources =  await _context.
+            Resources.
+            Include(r => r.ResourceType).
+            Where(r => r.StorageId == storageId).ToListAsync();
     }
 }
