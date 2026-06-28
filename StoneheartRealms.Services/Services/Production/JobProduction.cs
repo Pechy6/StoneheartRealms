@@ -35,6 +35,9 @@ public class JobProduction(IStorageService storageService) : IJobProduction
             case JobTypeIds.Woodcutter:
                 await WoodCut(dwarf, StorageTypeIds.MainStorage);
                 break;
+            case JobTypeIds.Miner:
+                await Mine(dwarf, StorageTypeIds.MainStorage);
+                break;
             case JobTypeIds.Administrator:
                 await Administrator(dwarf, StorageTypeIds.MainStorage);
                 break;
