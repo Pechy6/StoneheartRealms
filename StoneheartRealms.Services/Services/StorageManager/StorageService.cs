@@ -24,11 +24,17 @@ public class StorageService(StoneheartRealmsDbContext context) : IStorageService
         await _context.SaveChangesAsync();
     } 
 
-    public async Task<IEnumerable<ResourceDto?>> GetResource(int storageId)
+    public async Task<IEnumerable<ResourceDto?>> GetResources(int storageId)
     {
         var resources =  await _context.
             Resources.
             Include(r => r.ResourceType).
             Where(r => r.StorageId == storageId).ToListAsync();
+
+        return resources.Select(r => new ResourceDto
+        {
+            ResourceName = r.ResourceType.Name,
+            Amount = r.Amount
+        });
     }
 }
