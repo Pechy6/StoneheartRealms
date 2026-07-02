@@ -1,28 +1,33 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 // Nav
-import {Navigation} from './Components/Navigation/Navigation'
-import {HomePage} from './Components/Pages/Home/HomePage'
-import {FortressPage} from './Components/Pages/Fortress/FortressPage'
-import {SurroundingsPage} from './Components/Pages/Surroundings/SurroundingsPage'
-import {StoragePage} from './Components/Pages/Storage/StoragePage'
-import {ResourceBar} from './Components/ResourceBar/ResourceBar'
+import {HomePage} from './Pages/Home/HomePage.tsx'
+import {FortressPage} from './Pages/Fortress/FortressPage.tsx'
+import {SurroundingsPage} from './Pages/Surroundings/SurroundingsPage.tsx'
+import {StoragePage} from './Pages/Storage/StoragePage.tsx'
+import {RefreshProvider} from './context/RefreshContext'
+import {GameLayout} from './Components/Layout/GameLayout.tsx'
 
 
 function App() {
     return (
         <>
             <BrowserRouter>
-                <ResourceBar/>
-                <Navigation/>
                 <Routes>
                     <Route path="/"
                            element={<HomePage/>}/>
-                    <Route path="/fortress"
-                           element={<FortressPage/>}/>
-                    <Route path="/surroundings"
-                           element={<SurroundingsPage/>}/>
-                    <Route path="/storage"
-                           element={<StoragePage/>}/>
+                    
+                        <Route element={
+                            <RefreshProvider>
+                                <GameLayout/>
+                            </RefreshProvider>
+                        }>
+                            <Route path="/fortress"
+                                   element={<FortressPage/>}/>
+                            <Route path="/surroundings"
+                                   element={<SurroundingsPage/>}/>
+                            <Route path="/storage"
+                                   element={<StoragePage/>}/>
+                        </Route>
                 </Routes>
             </BrowserRouter>
         </>

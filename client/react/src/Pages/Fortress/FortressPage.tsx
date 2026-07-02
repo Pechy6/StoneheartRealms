@@ -1,7 +1,7 @@
-import {DwarfTable} from '../../Menu/DwarfTable'
+import {DwarfTable} from '../../Components/Dwarf/DwarfTable.tsx'
 
 //css 
-import '../../../styles/globals.css'
+import '../../styles/globals.css'
 
 export const FortressPage = () => {
     return (

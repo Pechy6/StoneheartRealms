@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import './DwarfCard.css'
+import '../../styles/DwarfCard.css'
 
 enum Gender {
     Male = 0,

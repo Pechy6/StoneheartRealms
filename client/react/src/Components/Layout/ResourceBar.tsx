@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {useRefresh} from '../../context/RefreshContext.tsx';
 
 type ResourceBar = {
     amount: number,
@@ -7,6 +8,7 @@ type ResourceBar = {
 
 export const ResourceBar = () => {
     const [resources, setResources] = useState<ResourceBar[]>([]);
+    const {refreshVersion} = useRefresh();
     
     const fetchResources = async () => {
         const response = await fetch('/api/storage');
@@ -17,7 +19,7 @@ export const ResourceBar = () => {
 
     useEffect(() => {
         fetchResources();
-    }, []);
+    }, [refreshVersion]);
     
     return (
         <div>

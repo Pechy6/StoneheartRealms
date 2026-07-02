@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
-import {DwarfCard} from '../DwarfCard/DwarfCard.tsx'
-import './DwarfTable.css'
+import {DwarfCard} from '../Dwarf/DwarfCard.tsx'
+import '../../styles/DwarfTable.css'
 import '../../styles/globals.css'
+import {useRefresh} from '../../context/RefreshContext.tsx';
 
 enum Gender {
     Male = 0,
@@ -23,6 +24,8 @@ export const DwarfTable = () => {
     const [dwarves, setDwarves] = useState<Dwarf[]>([]);
     const [selectedDwarfId, setSelectedDwarfId] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    
+    const {refreshVersion} = useRefresh();
 
     //Mouse 
     const [canClose, setCanClose] = useState(false);
@@ -33,23 +36,14 @@ export const DwarfTable = () => {
         console.log(data);
         setDwarves(data);
     }
-
-    const fetchTick = async () => {
-        const response = await fetch('/api/tick', {
-            method: 'POST'
-        });
-        
-        await fetchDwarves();
-        console.log(response.status);
-    }
-
+    
     const handleDelete = () => {
         fetchDwarves();
     }
 
     useEffect(() => {
         fetchDwarves();
-    }, []);
+    }, [refreshVersion]);
 
     return (
         <div>
@@ -106,7 +100,6 @@ export const DwarfTable = () => {
                 ))}
                 </tbody>
             </table>
-            <button onClick={fetchTick}>Tick</button>
         </div>
     )
 }
