@@ -30,12 +30,12 @@ public class DwarfConfiguration : IEntityTypeConfiguration<Dwarf>
             IsRequired();
 
         builder.
-            Property(d => d.Thirst).
+            Property(d => d.Hydration).
             HasDefaultValue(100).
             IsRequired();
 
         builder.
-            Property(d => d.Hunger).
+            Property(d => d.Satiety).
             HasDefaultValue(100).
             IsRequired();
 

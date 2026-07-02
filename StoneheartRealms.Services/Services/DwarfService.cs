@@ -28,8 +28,8 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
             Age = dwarf.Age,
             Gender = dwarf.Gender,
             Energy = dwarf.Energy,
-            Hunger = dwarf.Hunger,
-            Thirst = dwarf.Thirst,
+            Hunger = dwarf.Satiety,
+            Thirst = dwarf.Hydration,
             JobId = dwarf.JobId,
             Job = dwarf.Job?.Name
         };
@@ -52,8 +52,8 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
             Age = dwarf.Age,
             Gender = dwarf.Gender,
             Energy = dwarf.Energy,
-            Hunger = dwarf.Hunger,
-            Thirst = dwarf.Thirst,
+            Hunger = dwarf.Satiety,
+            Thirst = dwarf.Hydration,
             JobId = dwarf.JobId,
             Job = dwarf.Job?.Name
         });

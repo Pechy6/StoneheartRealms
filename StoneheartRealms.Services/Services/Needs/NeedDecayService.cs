@@ -15,11 +15,11 @@ public class NeedDecayService : INeedDecayService
 
     public void ReduceSatiety(Dwarf dwarf)
     {
-        dwarf.Hunger = (byte)Math.Max(0, dwarf.Hunger - _satietyDecayRate);
+        dwarf.Satiety = (byte)Math.Max(0, dwarf.Satiety - _satietyDecayRate);
     }
 
     public void ReduceHydration(Dwarf dwarf)
     {
-        dwarf.Thirst = (byte)Math.Max(0, dwarf.Thirst - _hydrationDecayRate);
+        dwarf.Hydration = (byte)Math.Max(0, dwarf.Hydration - _hydrationDecayRate);
     }
 }
