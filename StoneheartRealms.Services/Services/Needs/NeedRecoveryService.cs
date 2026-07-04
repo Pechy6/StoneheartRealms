@@ -1,14 +1,17 @@
+using StoneheartRealms.Data.Constants;
 using StoneheartRealms.Data.Entities.Creatures;
+using StoneheartRealms.Services.Services.Resources;
 
 namespace StoneheartRealms.Services.Services.Needs;
 
-public class NeedRecoveryService: INeedRecoveryService
+public class NeedRecoveryService(IResourceService resourceService) : INeedRecoveryService
 {
-
+    private readonly IResourceService _resourceService = resourceService;
+    
     private const int RecoveryEnergy = 15;
     private const int RecoverySatiety = 45;
     private const int RecoveryHydration = 30;
-    
+
     public void RecoverEnergy(Dwarf dwarf)
     {
         if (dwarf.Energy < 45)
@@ -17,13 +20,23 @@ public class NeedRecoveryService: INeedRecoveryService
         }
     }
 
-    public void RecoverSatiety(Dwarf dwarf)
+    public async Task RecoverSatiety(Dwarf dwarf)
     {
-        dwarf.Satiety = (byte)Math.Min(100, dwarf.Satiety + RecoverySatiety);
+        if (dwarf.Satiety <= 55)
+        {
+            var consumed = await _resourceService.TryConsumeFood(StorageTypeIds.MainStorage);
+            if (consumed)
+            {
+                dwarf.Satiety = (byte)Math.Min(100, dwarf.Satiety + RecoverySatiety);
+            }
+        }
     }
 
     public void RecoverHydration(Dwarf dwarf)
     {
-        dwarf.Hydration = (byte)Math.Min(100, dwarf.Hydration + RecoveryHydration);
+        if (dwarf.Hydration <= 70)
+        {
+            dwarf.Hydration = (byte)Math.Min(100, dwarf.Hydration + RecoveryHydration);    
+        }
     }
 }
