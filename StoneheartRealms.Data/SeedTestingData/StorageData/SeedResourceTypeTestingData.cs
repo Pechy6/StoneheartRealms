@@ -49,6 +49,11 @@ public static class SeedResourceTypeTestingData
                 {
                     Id = 8,
                     Name = "Food"
+                },
+                new ResourceType
+                {
+                    Id = 9,
+                    Name = "Water"
                 }
             );
     }

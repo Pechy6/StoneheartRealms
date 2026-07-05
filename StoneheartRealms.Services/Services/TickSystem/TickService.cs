@@ -12,7 +12,7 @@ public class TickService(
     IJobProduction jobProduction,
     INeedRecoveryService needRecoveryService,
     StoneheartRealmsDbContext context
-    ) : ITickService
+) : ITickService
 {
     private readonly INeedDecayService _needDecayService = needDecayService;
     private readonly StoneheartRealmsDbContext _context = context;
@@ -25,7 +25,7 @@ public class TickService(
             Dwarves.
             Include(d => d.Job).
             ToListAsync();
-        
+
         foreach (var dwarf in dwarves)
         {
             _needDecayService.ReduceHydration(dwarf);

@@ -65,6 +65,13 @@ public static class SeedResourceTestingData
                     ResourceTypeId = 8,
                     StorageId = 1,
                     Amount = 200
+                },
+                new Resource
+                {
+                    Id = 9,
+                    ResourceTypeId = 9,
+                    StorageId = 1,
+                    Amount = 10000
                 }
             );
     }
