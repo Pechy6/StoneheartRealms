@@ -6,5 +6,5 @@ public interface INeedRecoveryService
 {
     public void RecoverEnergy(Dwarf dwarf);
     public Task RecoverSatiety(Dwarf dwarf);
-    public void RecoverHydration(Dwarf dwarf);
+    public Task RecoverHydration(Dwarf dwarf);
 }

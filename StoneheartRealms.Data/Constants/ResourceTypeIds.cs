@@ -10,4 +10,5 @@ public static class ResourceTypeIds
     public const int Meat = 6;
     public const int Wheat = 7;
     public const int Food = 8;
+    public const int Water = 9;
 }

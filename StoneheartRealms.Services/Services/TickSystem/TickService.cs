@@ -31,7 +31,9 @@ public class TickService(
             _needDecayService.ReduceHydration(dwarf);
             _needDecayService.ReduceEnergy(dwarf);
             _needDecayService.ReduceSatiety(dwarf);
+            
             await _needRecoveryService.RecoverSatiety(dwarf);
+            await _needRecoveryService.RecoverHydration(dwarf);
 
             await _jobProduction.Produce(dwarf);
         }

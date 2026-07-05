@@ -23,8 +23,17 @@ public class ResourceService(StoneheartRealmsDbContext context) : IResourceServi
         return true;
     }
 
-    public Task<bool> TryConsumeWater(int storageId)
+    public async Task<bool> TryConsumeWater(int storageId)
     {
-        throw new NotImplementedException();
+        var water = await _context.Resources.FirstOrDefaultAsync(r =>
+            r.StorageId == storageId && r.ResourceTypeId == ResourceTypeIds.Water);
+
+        if (water == null || water.Amount < ResourceToConsume)
+        {
+            return false;
+        }
+
+        water.Amount -= ResourceToConsume;
+        return true;
     }
 }

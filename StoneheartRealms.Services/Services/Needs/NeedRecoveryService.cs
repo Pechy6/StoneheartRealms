@@ -32,11 +32,15 @@ public class NeedRecoveryService(IResourceService resourceService) : INeedRecove
         }
     }
 
-    public void RecoverHydration(Dwarf dwarf)
+    public async Task RecoverHydration(Dwarf dwarf)
     {
         if (dwarf.Hydration <= 70)
         {
-            dwarf.Hydration = (byte)Math.Min(100, dwarf.Hydration + RecoveryHydration);    
+            var consumed = await _resourceService.TryConsumeWater(StorageTypeIds.MainStorage);
+            if (consumed)
+            {
+                dwarf.Hydration = (byte)Math.Min(100, dwarf.Hydration + RecoveryHydration);    
+            }
         }
     }
 }
