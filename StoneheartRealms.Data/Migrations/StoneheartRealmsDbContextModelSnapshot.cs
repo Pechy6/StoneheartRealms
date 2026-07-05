@@ -194,48 +194,54 @@ namespace StoneheartRealms.Data.Migrations
                         new
                         {
                             Id = 1,
+                            Description = "No job assigned",
+                            Name = "Unassigned Job"
+                        },
+                        new
+                        {
+                            Id = 2,
                             Description = "This is a farmer",
                             Name = "Farmer"
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 3,
                             Description = "This is a fisher",
                             Name = "Fisher"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 4,
                             Description = "This is a hunter",
                             Name = "Hunter"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 5,
                             Description = "This is a cook",
                             Name = "Cook"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 6,
                             Description = "This is a miner",
                             Name = "Miner"
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 7,
                             Description = "This is a blacksmith",
                             Name = "Blacksmith"
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 8,
                             Description = "This is a woodcutter",
                             Name = "Woodcutter"
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 9,
                             Description = "This is a administrator of the colony",
                             Name = "Administrator"
                         });

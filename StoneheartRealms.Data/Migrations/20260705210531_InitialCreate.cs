@@ -62,8 +62,8 @@ namespace StoneheartRealms.Data.Migrations
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Energy = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)100),
-                    Hunger = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)100),
-                    Thirst = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)100),
+                    Satiety = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)100),
+                    Hydration = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)100),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     JobId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -109,14 +109,15 @@ namespace StoneheartRealms.Data.Migrations
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, "This is a farmer", "Farmer" },
-                    { 2, "This is a fisher", "Fisher" },
-                    { 3, "This is a hunter", "Hunter" },
-                    { 4, "This is a cook", "Cook" },
-                    { 5, "This is a miner", "Miner" },
-                    { 6, "This is a blacksmith", "Blacksmith" },
-                    { 7, "This is a woodcutter", "Woodcutter" },
-                    { 8, "This is a administrator of the colony", "Administrator" }
+                    { 1, "No job assigned", "Unassigned Job" },
+                    { 2, "This is a farmer", "Farmer" },
+                    { 3, "This is a fisher", "Fisher" },
+                    { 4, "This is a hunter", "Hunter" },
+                    { 5, "This is a cook", "Cook" },
+                    { 6, "This is a miner", "Miner" },
+                    { 7, "This is a blacksmith", "Blacksmith" },
+                    { 8, "This is a woodcutter", "Woodcutter" },
+                    { 9, "This is a administrator of the colony", "Administrator" }
                 });
 
             migrationBuilder.InsertData(
@@ -131,7 +132,8 @@ namespace StoneheartRealms.Data.Migrations
                     { 5, "Fish" },
                     { 6, "Meat" },
                     { 7, "Wheat" },
-                    { 8, "Food" }
+                    { 8, "Food" },
+                    { 9, "Water" }
                 });
 
             migrationBuilder.InsertData(
@@ -141,7 +143,7 @@ namespace StoneheartRealms.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Dwarves",
-                columns: new[] { "Id", "Age", "Description", "Energy", "Gender", "Hunger", "JobId", "Name", "Thirst" },
+                columns: new[] { "Id", "Age", "Description", "Energy", "Gender", "Hydration", "JobId", "Name", "Satiety" },
                 values: new object[,]
                 {
                     { 1, 186, "This is the first dwarf", (byte)100, 0, (byte)100, 1, "First Dwarf", (byte)100 },
@@ -166,7 +168,8 @@ namespace StoneheartRealms.Data.Migrations
                     { 5, 50, 5, 1 },
                     { 6, 50, 6, 1 },
                     { 7, 100, 7, 1 },
-                    { 8, 200, 8, 1 }
+                    { 8, 200, 8, 1 },
+                    { 9, 10000, 9, 1 }
                 });
 
             migrationBuilder.CreateIndex(

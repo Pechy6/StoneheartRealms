@@ -12,49 +12,55 @@ public static class SeedJobTestingData
             HasData(
                 new Job
                 {
-                    Id = 1,
+                  Id  = 1,
+                  Name = "Unassigned Job",
+                  Description = "No job assigned",
+                },
+                new Job
+                {
+                    Id = 2,
                     Name = "Farmer",
                     Description = "This is a farmer",
                 },
                 new Job
                 {
-                    Id = 2,
+                    Id = 3,
                     Name = "Fisher",
                     Description = "This is a fisher"
                 },
                 new Job
                 {
-                    Id = 3,
+                    Id = 4,
                     Name = "Hunter",
                     Description = "This is a hunter"
                 },
                 new Job
                     {
-                        Id = 4,
+                        Id = 5,
                         Name = "Cook",
                         Description = "This is a cook"
                     },
                 new Job
                 {
-                    Id = 5,
+                    Id = 6,
                     Name = "Miner",
                     Description = "This is a miner"
                 },
                 new Job
                 {
-                    Id = 6,
+                    Id = 7,
                     Name = "Blacksmith",
                     Description = "This is a blacksmith"
                 },
                 new Job
                 {
-                    Id = 7,
+                    Id = 8,
                     Name = "Woodcutter",
                     Description = "This is a woodcutter"
                 },
                 new Job
                 {
-                    Id = 8,
+                    Id = 9,
                     Name = "Administrator",
                     Description = "This is a administrator of the colony"
                 }
