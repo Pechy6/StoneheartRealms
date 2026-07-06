@@ -44,3 +44,9 @@ td {
     align-items: center;
     z-index: 1000;
 }
+
+.progress {
+    width: 80px;
+    height: 25px;
+    background-color: #333;
+}

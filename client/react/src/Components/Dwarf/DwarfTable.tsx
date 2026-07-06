@@ -92,9 +92,10 @@ export const DwarfTable = () => {
                         <td className="name">{dwarf.name}</td>
                         <td>{dwarf.age}</td>
                         <td>{Gender[dwarf.gender]}</td>
-                        <td>{dwarf.energy}</td>
-                        <td>{dwarf.hunger}</td>
-                        <td>{dwarf.thirst}</td>
+                        <td>
+                            <progress className="progress" value={dwarf.energy} max={100}></progress></td>
+                        <td><progress className="progress" value={dwarf.hunger} max={100}></progress></td>
+                        <td><progress className="progress" value={dwarf.thirst} max={100}></progress></td>
                         <td>{dwarf.job}</td>
                     </tr>
                 ))}

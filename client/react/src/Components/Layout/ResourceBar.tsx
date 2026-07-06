@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useRefresh} from '../../context/RefreshContext.tsx';
+import "../../styles/ResourceBar.css"
 
 type ResourceBar = {
     amount: number,
@@ -22,10 +23,10 @@ export const ResourceBar = () => {
     }, [refreshVersion]);
     
     return (
-        <div>
+        <div className="resource-bar">
             {resources.map((resource) => (
                 <ul key={resource.resourceId}>
-                    <li>{resource.resourceName} {resource.amount}</li>
+                    <li className="resource-bar-li"><b>{resource.resourceName}:</b> {resource.amount}</li>
                 </ul>
             ))}
         </div>

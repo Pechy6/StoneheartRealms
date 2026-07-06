@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import {useRefresh} from "../../context/RefreshContext";
+import "../../styles/TickBtn.css"
 
 export const TickButton = () => {
     
@@ -19,6 +20,6 @@ export const TickButton = () => {
     }
     
     return (
-        <button onClick={fetchTick}>Tick</button>
+        <button className="btn" onClick={fetchTick}>Tick</button>
     )
 }
