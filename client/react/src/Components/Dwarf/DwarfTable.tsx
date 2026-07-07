@@ -3,6 +3,7 @@ import {DwarfCard} from '../Dwarf/DwarfCard.tsx'
 import '../../styles/DwarfTable.css'
 import '../../styles/globals.css'
 import {useRefresh} from '../../context/RefreshContext.tsx';
+import {ProgressBar} from '../ProgressBar/ProgressBar.tsx'
 
 enum Gender {
     Male = 0,
@@ -92,10 +93,9 @@ export const DwarfTable = () => {
                         <td className="name">{dwarf.name}</td>
                         <td>{dwarf.age}</td>
                         <td>{Gender[dwarf.gender]}</td>
-                        <td>
-                            <progress className="progress" value={dwarf.energy} max={100}></progress></td>
-                        <td><progress className="progress" value={dwarf.hunger} max={100}></progress></td>
-                        <td><progress className="progress" value={dwarf.thirst} max={100}></progress></td>
+                        <td><ProgressBar value={dwarf.energy} maxValue={100}/></td>
+                        <td><ProgressBar value={dwarf.hunger} maxValue={100}/></td>
+                        <td><ProgressBar value={dwarf.thirst} maxValue={100}/></td>
                         <td>{dwarf.job}</td>
                     </tr>
                 ))}
