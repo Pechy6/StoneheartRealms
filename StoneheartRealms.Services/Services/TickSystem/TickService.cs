@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using StoneheartRealms.Data.Constants;
 using StoneheartRealms.Data.Data;
 using StoneheartRealms.Services.Services.Needs;
+using StoneheartRealms.Services.Services.Needs.Sleep;
 using StoneheartRealms.Services.Services.Production;
 using StoneheartRealms.Services.Services.States.Dwarves;
 using IResourceService = StoneheartRealms.Services.Services.Resources.IResourceService;
@@ -13,6 +14,7 @@ public class TickService(
     IJobProduction jobProduction,
     INeedRecoveryService needRecoveryService,
     IDwarfStateService dwarfStateService,
+    ISleepService sleepService,
     StoneheartRealmsDbContext context
 ) : ITickService
 {
@@ -21,6 +23,7 @@ public class TickService(
     private readonly IJobProduction _jobProduction = jobProduction;
     private readonly INeedRecoveryService _needRecoveryService = needRecoveryService;
     private readonly IDwarfStateService _dwarfStateService = dwarfStateService;
+    private readonly ISleepService _sleepService = sleepService;
 
     public async Task Tick()
     {
@@ -36,6 +39,7 @@ public class TickService(
             _needDecayService.ReduceEnergy(dwarf);
             _needDecayService.ReduceSatiety(dwarf);
             
+            _sleepService.ProcessSleep(dwarf);
             await _needRecoveryService.RecoverSatiety(dwarf);
             await _needRecoveryService.RecoverHydration(dwarf);
 

@@ -6,6 +6,7 @@ using StoneheartRealms.Services.Interfaces.Job;
 using StoneheartRealms.Services.Services;
 using StoneheartRealms.Services.Services.Job;
 using StoneheartRealms.Services.Services.Needs;
+using StoneheartRealms.Services.Services.Needs.Sleep;
 using StoneheartRealms.Services.Services.Production;
 using StoneheartRealms.Services.Services.Resources;
 using StoneheartRealms.Services.Services.States.Dwarves;
@@ -30,6 +31,7 @@ builder.Services.AddScoped<IJobService, JobService>();
 builder.Services.AddScoped<IJobProduction, JobProduction>();
 builder.Services.AddScoped<IResourceService, ResourceService>();
 builder.Services.AddScoped<IDwarfStateService, DwarfStateService>();
+builder.Services.AddScoped<ISleepService, SleepService>();
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
