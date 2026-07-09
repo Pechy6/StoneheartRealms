@@ -8,6 +8,7 @@ using StoneheartRealms.Services.Services.Job;
 using StoneheartRealms.Services.Services.Needs;
 using StoneheartRealms.Services.Services.Production;
 using StoneheartRealms.Services.Services.Resources;
+using StoneheartRealms.Services.Services.States.Dwarves;
 using StoneheartRealms.Services.Services.StorageManager;
 using StoneheartRealms.Services.Services.TickSystem;
 using IResourceService = StoneheartRealms.Services.Services.Resources.IResourceService;
@@ -28,6 +29,7 @@ builder.Services.AddScoped<IDwarfService, DwarfService>();
 builder.Services.AddScoped<IJobService, JobService>();
 builder.Services.AddScoped<IJobProduction, JobProduction>();
 builder.Services.AddScoped<IResourceService, ResourceService>();
+builder.Services.AddScoped<IDwarfStateService, DwarfStateService>();
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();

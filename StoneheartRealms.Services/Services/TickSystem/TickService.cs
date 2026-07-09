@@ -3,6 +3,7 @@ using StoneheartRealms.Data.Constants;
 using StoneheartRealms.Data.Data;
 using StoneheartRealms.Services.Services.Needs;
 using StoneheartRealms.Services.Services.Production;
+using StoneheartRealms.Services.Services.States.Dwarves;
 using IResourceService = StoneheartRealms.Services.Services.Resources.IResourceService;
 
 namespace StoneheartRealms.Services.Services.TickSystem;
@@ -11,6 +12,7 @@ public class TickService(
     INeedDecayService needDecayService,
     IJobProduction jobProduction,
     INeedRecoveryService needRecoveryService,
+    IDwarfStateService dwarfStateService,
     StoneheartRealmsDbContext context
 ) : ITickService
 {
@@ -18,6 +20,7 @@ public class TickService(
     private readonly StoneheartRealmsDbContext _context = context;
     private readonly IJobProduction _jobProduction = jobProduction;
     private readonly INeedRecoveryService _needRecoveryService = needRecoveryService;
+    private readonly IDwarfStateService _dwarfStateService = dwarfStateService;
 
     public async Task Tick()
     {
@@ -28,6 +31,7 @@ public class TickService(
 
         foreach (var dwarf in dwarves)
         {
+            _dwarfStateService.SetDwarfState(dwarf);
             _needDecayService.ReduceHydration(dwarf);
             _needDecayService.ReduceEnergy(dwarf);
             _needDecayService.ReduceSatiety(dwarf);
