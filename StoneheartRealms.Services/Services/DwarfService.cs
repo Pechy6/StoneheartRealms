@@ -31,7 +31,8 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
             Hunger = dwarf.Satiety,
             Thirst = dwarf.Hydration,
             JobId = dwarf.JobId,
-            Job = dwarf.Job?.Name
+            Job = dwarf.Job?.Name,
+            DwarfState = dwarf.DwarfState
         };
         
         return dwarfDto;
@@ -55,7 +56,8 @@ public class DwarfService(StoneheartRealmsDbContext context) : IDwarfService
             Hunger = dwarf.Satiety,
             Thirst = dwarf.Hydration,
             JobId = dwarf.JobId,
-            Job = dwarf.Job?.Name
+            Job = dwarf.Job?.Name,
+            DwarfState = dwarf.DwarfState
         });
     }
 

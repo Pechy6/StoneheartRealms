@@ -5,19 +5,22 @@ import '../../styles/globals.css'
 import {useRefresh} from '../../context/RefreshContext.tsx';
 import {ProgressBar} from '../ProgressBar/ProgressBar.tsx'
 
-enum Gender {
-    Male = 0,
-    Female = 1,
+enum DwarfState {
+    Idle = 0,
+    Working = 1,
+    Sleeping = 2,
+    Traveling = 3,
+    Fighting = 4,
+    Dead = 5,
 }
 
 type Dwarf = {
     id: number,
     name: string,
-    age: number,
-    gender: string,
     energy: number,
     hunger: number,
     thirst: number,
+    dwarfState: number,
     job: string
 }
 
@@ -75,11 +78,10 @@ export const DwarfTable = () => {
                 <thead>
                 <tr className={'head-row'}>
                     <th>Name</th>
-                    <th>Age</th>
-                    <th>Gender</th>
                     <th>Energy</th>
                     <th>Hunger</th>
                     <th>Thirst</th>
+                    <th>State</th>
                     <th>Job</th>
                 </tr>
                 </thead>
@@ -91,11 +93,10 @@ export const DwarfTable = () => {
                             setIsModalOpen(true);
                         }}>
                         <td className="name">{dwarf.name}</td>
-                        <td>{dwarf.age}</td>
-                        <td>{Gender[dwarf.gender]}</td>
                         <td><ProgressBar value={dwarf.energy} maxValue={100}/></td>
                         <td><ProgressBar value={dwarf.hunger} maxValue={100}/></td>
                         <td><ProgressBar value={dwarf.thirst} maxValue={100}/></td>
+                        <td>{DwarfState[dwarf.dwarfState]}</td>
                         <td>{dwarf.job}</td>
                     </tr>
                 ))}

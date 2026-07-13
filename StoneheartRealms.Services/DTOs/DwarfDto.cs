@@ -17,4 +17,5 @@ public class DwarfDto
     
     public int? JobId { get; set; }
     public string? Job { get; set; }
+    public DwarfState DwarfState { get; set; }
 }
