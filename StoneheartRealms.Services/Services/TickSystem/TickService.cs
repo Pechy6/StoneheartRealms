@@ -35,9 +35,9 @@ public class TickService(
         foreach (var dwarf in dwarves)
         {
             _dwarfStateService.SetDwarfState(dwarf);
+            _needDecayService.ReduceSatiety(dwarf);
             _needDecayService.ReduceHydration(dwarf);
             _needDecayService.ReduceEnergy(dwarf);
-            _needDecayService.ReduceSatiety(dwarf);
             
             _sleepService.ProcessSleep(dwarf);
             await _needRecoveryService.RecoverSatiety(dwarf);
