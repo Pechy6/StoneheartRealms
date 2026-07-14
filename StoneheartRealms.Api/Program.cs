@@ -12,6 +12,7 @@ using StoneheartRealms.Services.Services.Resources;
 using StoneheartRealms.Services.Services.States.Dwarves;
 using StoneheartRealms.Services.Services.StorageManager;
 using StoneheartRealms.Services.Services.TickSystem;
+using StoneheartRealms.Services.Services.World;
 using IResourceService = StoneheartRealms.Services.Services.Resources.IResourceService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IJobProduction, JobProduction>();
 builder.Services.AddScoped<IResourceService, ResourceService>();
 builder.Services.AddScoped<IDwarfStateService, DwarfStateService>();
 builder.Services.AddScoped<ISleepService, SleepService>();
+builder.Services.AddScoped<IGameTimeService, GameTimeService>();
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
