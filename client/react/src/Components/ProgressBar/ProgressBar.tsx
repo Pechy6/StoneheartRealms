@@ -6,7 +6,6 @@ type ProgressProps = {
 }
 
 export const ProgressBar = (props: ProgressProps) => {
-    console.log(props.value, props.maxValue);
     let width = (props.value / props.maxValue) * 100;
     
     let color;

@@ -14,7 +14,6 @@ export const ResourceBar = () => {
     const fetchResources = async () => {
         const response = await fetch('/api/storage');
         const data = await response.json();
-        console.log(data);
         setResources(data);
     }
 
