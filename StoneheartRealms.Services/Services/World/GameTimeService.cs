@@ -18,7 +18,6 @@ public class GameTimeService(StoneheartRealmsDbContext context): IGameTimeServic
 
         return new GameTimeDto
         {
-            Year = gameTime.Year,
             Day = gameTime.Day,
             Hour = gameTime.Hour
         };

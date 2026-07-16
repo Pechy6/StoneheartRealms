@@ -13,8 +13,6 @@ public static class SeedWorldTestingData
                 new GameTime
                 {
                     Id = 1,
-                    Year = 786,
-                    Month = 9,
                     Day = 1,
                     Hour = 6
                 }

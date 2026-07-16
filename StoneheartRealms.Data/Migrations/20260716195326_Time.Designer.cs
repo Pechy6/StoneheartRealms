@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoneheartRealms.Data.Data;
 
@@ -10,9 +11,11 @@ using StoneheartRealms.Data.Data;
 namespace StoneheartRealms.Data.Migrations
 {
     [DbContext(typeof(StoneheartRealmsDbContext))]
-    partial class StoneheartRealmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260716195326_Time")]
+    partial class Time
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

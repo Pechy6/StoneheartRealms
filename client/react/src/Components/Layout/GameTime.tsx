@@ -22,4 +22,9 @@ export const GameTime = () => {
         fetchTime();
     }, [refreshVersion]);
     
+    return(
+        <>
+            <p style={{color: 'black'}}>{time?.day}{time?.hour}:00</p>
+        </>
+    );
 }
