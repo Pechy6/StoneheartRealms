@@ -5,6 +5,7 @@ using StoneheartRealms.Services.Services.Needs;
 using StoneheartRealms.Services.Services.Needs.Sleep;
 using StoneheartRealms.Services.Services.Production;
 using StoneheartRealms.Services.Services.States.Dwarves;
+using StoneheartRealms.Services.Services.World;
 using IResourceService = StoneheartRealms.Services.Services.Resources.IResourceService;
 
 namespace StoneheartRealms.Services.Services.TickSystem;
@@ -15,6 +16,7 @@ public class TickService(
     INeedRecoveryService needRecoveryService,
     IDwarfStateService dwarfStateService,
     ISleepService sleepService,
+    IGameTimeService gameTimeService,
     StoneheartRealmsDbContext context
 ) : ITickService
 {
@@ -24,6 +26,7 @@ public class TickService(
     private readonly INeedRecoveryService _needRecoveryService = needRecoveryService;
     private readonly IDwarfStateService _dwarfStateService = dwarfStateService;
     private readonly ISleepService _sleepService = sleepService;
+    private readonly IGameTimeService _gameTimeService = gameTimeService;
 
     public async Task Tick()
     {
@@ -46,6 +49,7 @@ public class TickService(
             await _jobProduction.Produce(dwarf);
         }
 
+        await _gameTimeService.ChangeGameTime();
         await _context.SaveChangesAsync();
     }
 }

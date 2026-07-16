@@ -6,4 +6,5 @@ namespace StoneheartRealms.Services.Services.World;
 public interface IGameTimeService
 {
     public Task<GameTimeDto> GetCurrentGameTime();
+    public Task ChangeGameTime();
 }

@@ -24,7 +24,7 @@ export const GameTime = () => {
     
     return(
         <>
-            <p style={{color: 'black'}}>{time?.day}{time?.hour}:00</p>
+            <p style={{color: 'black'}}>Day:{time?.day} Time: {time?.hour}:00</p>
         </>
     );
 }

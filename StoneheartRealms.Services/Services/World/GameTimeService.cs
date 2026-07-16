@@ -10,16 +10,35 @@ public class GameTimeService(StoneheartRealmsDbContext context): IGameTimeServic
     private readonly StoneheartRealmsDbContext _context = context;
     public async Task<GameTimeDto> GetCurrentGameTime()
     {
-        var gameTime = await _context.GameTimes.FirstOrDefaultAsync();
-        if (gameTime == null)
-        {
-            throw new InvalidOperationException("GameTime not found.");
-        }
+        var gameTime = await GetGameTime();
 
         return new GameTimeDto
         {
             Day = gameTime.Day,
             Hour = gameTime.Hour
         };
+    }
+
+    public async Task ChangeGameTime()
+    {
+        var gameTime = await GetGameTime();
+        
+        gameTime.Hour++;
+        if (gameTime.Hour >= 24)
+        {
+            gameTime.Hour = 0;
+            gameTime.Day++;
+        }
+    }
+    
+    private async Task<GameTime> GetGameTime()
+    {
+        var gameTime = await _context.GameTimes.FirstOrDefaultAsync();
+        if (gameTime == null)
+        {
+            throw new InvalidOperationException("Game time was not found");
+        }
+
+        return gameTime;
     }
 }
