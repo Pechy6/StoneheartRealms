@@ -29,11 +29,13 @@ Projekt slouží především jako prostředek pro zdokonalování mých znalost
 - DTO objekty
 - REST API
 - Entity Framework Core
+- Herní čás (1 tick znamená 1 hodina)
 
 ---
 
 ## Plánované funkce
 
+- Den a noc 
 - Stavba budov
 - Inventář
 - Bojový systém

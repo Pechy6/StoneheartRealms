@@ -4,7 +4,8 @@ import {useRefresh} from '../../context/RefreshContext.tsx'
 type GameTime = {
     year: number,
     day: number,
-    hour: number
+    hour: number,
+    currentTimeOfDay: number
 }
 
 export const GameTime = () => {
@@ -18,13 +19,23 @@ export const GameTime = () => {
         setTime(data);
     }
     
+    const getTImeOfDayText = (currentTimeOfDay?: number) => {
+        if (currentTimeOfDay === 0)
+            return 'IsDay';
+        
+        if (currentTimeOfDay === 1)
+            return 'IsNight';
+        
+        return '';
+    }
+    
     useEffect(() => {
         fetchTime();
     }, [refreshVersion]);
     
     return(
         <>
-            <p style={{color: 'black'}}>Day:{time?.day} Time: {time?.hour}:00</p>
+            <p style={{color: 'black'}}>Day:{time?.day} Time: {time?.hour}:00 {getTImeOfDayText(time?.currentTimeOfDay)}</p>
         </>
     );
 }

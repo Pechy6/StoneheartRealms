@@ -41,7 +41,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<StoneheartRealmsDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-
+ 
 var app = builder.Build();
 
 
