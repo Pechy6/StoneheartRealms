@@ -4,7 +4,7 @@ namespace StoneheartRealms.Services.Services.Needs;
 
 public class NeedDecayService : INeedDecayService
 {
-    private readonly byte _energyDecayRate = 6;
+    private readonly byte _energyDecayRate = 4;
 
     private readonly byte _satietyDecayRate = 5;
     private readonly byte _sleepingSatietyDecayRate = 2;

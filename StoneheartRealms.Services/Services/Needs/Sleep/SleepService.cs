@@ -6,7 +6,7 @@ namespace StoneheartRealms.Services.Services.Needs.Sleep;
 public class SleepService : ISleepService
 {
     private readonly byte _remainingEnergy = 35;
-    private readonly byte _recoveryEnergy = 8;
+    private readonly byte _recoveryEnergy = 9;
     private readonly byte _maxEnergy = 100;
 
     public void ProcessSleep(Dwarf dwarf)
