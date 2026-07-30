@@ -12,8 +12,8 @@ public class StorageService(StoneheartRealmsDbContext context) : IStorageService
     public async Task AddResources(int storageId, int resourceTypeId, int amount)
     {
         var resource =
-            await _context.Resources.FirstOrDefaultAsync(s =>
-                s.StorageId == storageId && s.ResourceTypeId == resourceTypeId);
+            await _context.Resources.FirstOrDefaultAsync(r =>
+                r.StorageId == storageId && r.ResourceTypeId == resourceTypeId);
 
         if (resource == null)
         {
